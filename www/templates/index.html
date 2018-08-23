@@ -40,83 +40,71 @@
   </nav>
 
   <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-md">
+        <div class="jumbotron custom">
+          <div class="text-center">
+            <h3>Temperatura</h3>
+            <p class="lead">Promedio: </p>
+            <p class="lead">Ultima muestra: </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="jumbotron custom">
+          <div class="text-center">
+            <h3>Humedad</h3>
+            <p class="lead">Promedio: </p>
+            <p class="lead">Ultima muestra: </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="jumbotron custom">
+          <div class="text-center">
+            <h3>Presión</h3>
+            <p class="lead">Promedio: </p>
+            <p class="lead">Ultima muestra: </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="jumbotron custom">
+          <div class="text-center">
+            <h3>Viento</h3>
+            <p class="lead">Promedio: </p>
+            <p class="lead">Ultima muestra: </p>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- row end -->
+
     <form method="POST" action="/match">
       <div class="row">
-
-        <div class="col-md">
+        <div class="col-md-5">
           <div class="jumbotron custom">
             <div class="text-center">
-              <h3>Temperatura</h3>
-              <p class="lead">Promedio: </p>
-              <p class="lead">Ultima muestra: </p>
               <p class="lead">Período de muestreo: </p>
               <div class="input-group mb-3">
-                <select class="custom-select" name="eastern" id="eastern-select">
-                  {% for x in east %}
-                  <option value={{x.id}} data-image={{x.logo}}>{{x.name}}</option>
-                  {% endfor %}
+                <select class="custom-select" name="time" id="time-select">
+                  <option value=1 selected>1</option>
+                  <option value=2 >2</option>
+                  <option value=5 >5</option>
+                  <option value=10 >10</option>
+                  <option value=30 >30</option>
+                  <option value=60 >60</option>
                 </select>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="col-md">
-          <div class="jumbotron custom">
-            <div class="text-center">
-              <h3>Humedad</h3>
-              <p class="lead">Promedio: </p>
-              <p class="lead">Ultima muestra: </p>
-              <p class="lead">Período de muestreo: </p>
-              <div class="input-group mb-3">
-                <select class="custom-select" name="eastern" id="eastern-select">
-                  {% for x in east %}
-                  <option value={{x.id}} data-image={{x.logo}}>{{x.name}}</option>
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md">
-          <div class="jumbotron custom">
-            <div class="text-center">
-              <h3>Presión</h3>
-              <p class="lead">Promedio: </p>
-              <p class="lead">Ultima muestra: </p>
-              <p class="lead">Período de muestreo: </p>
-              <div class="input-group mb-3">
-                <select class="custom-select" name="eastern" id="eastern-select">
-                  {% for x in east %}
-                  <option value={{x.id}} data-image={{x.logo}}>{{x.name}}</option>
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md">
-          <div class="jumbotron custom">
-            <div class="text-center">
-              <h3>Viento</h3>
-              <p class="lead">Promedio: </p>
-              <p class="lead">Ultima muestra: </p>
-              <p class="lead">Período de muestreo: </p>
-              <div class="input-group mb-3">
-                <select class="custom-select" name="eastern" id="eastern-select">
-                  {% for x in east %}
-                  <option value={{x.id}} data-image={{x.logo}}>{{x.name}}</option>
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div> <!-- row end -->
-
+    </form>
   </div> <!-- container end -->
 
   <!-- Optional JavaScript -->
@@ -125,6 +113,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
   <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/timer.js') }}"></script>
 
 </body>
 
