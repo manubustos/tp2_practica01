@@ -10,8 +10,9 @@ pro = Process()
 
 @app.route('/')
 def index():
+  samples = db.init_sample()
   pro.start_process()
-  return render_template('index.html')
+  return render_template('index.html', temperatura=samples["temperatura"], humedad=samples["humedad"], presion=samples["presion"], viento=samples["viento"])
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0', port=8888)

@@ -2,7 +2,6 @@ import os
 import signal
 import subprocess
 
-
 class Process(object):
   process = None
 
