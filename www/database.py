@@ -31,25 +31,20 @@ class Database(object):
       self.Base.metadata.create_all(engine)
     return self.session
 
-  def init_sample(self):
+  def init_sample(self, dict_sample):
     session = self.get_session()
-    samples = {}
-    samples["temperatura"] = random.randint(10,30)
-    samples["humedad"] = random.randint(0,100)
-    samples["presion"] = random.randint(1000, 1020)
-    samples["viento"] = random.randint(10, 30)
-    sample = Samples(temperature=samples["temperatura"], humidity=samples["humedad"],
-                      pressure=samples["presion"], windspeed=samples["viento"])
+    sample = Samples(temperature=dict_sample["temperatura"], humidity=dict_sample["humedad"],
+                      pressure=dict_sample["presion"], windspeed=dict_sample["viento"])
     session.add(sample)
     session.commit()
+    sample_id = int(sample.id)
     session.close()
-    return samples
+    return sample_id
 
-  def get_last_sample(self):
+  def get_sample(self, id_sample):
     session = self.get_session()
-    query = session.query(Samples).order_by(Samples.id.desc()).first()
+    sample = session.query(Samples).filter_by(id=id_sample).first()
     session.close()
-    sample = [query.temperature, query.humidity, query.pressure, query.windspeed]
     return sample
 
   def add_sample(self, sample):

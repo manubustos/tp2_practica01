@@ -6,11 +6,11 @@ $(document).ready(function(){
 });
 
 function muestrear(){
-  $.get("/samples/last/", function(data) {
-    $("#ultima-temperatura").html(data[0] + "°C");
-    $("#ultima-humedad").html(data[1] + "%");
-    $("#ultima-presion").html(data[2] + " hPa");
-    $("#ultima-viento").html(data[3] + " km/h");
+  $.get("/samples/" + id_sample, function(data) {
+    $("#ultima-temperatura").html(data.temperature + "°C");
+    $("#ultima-humedad").html(data.humidity + "%");
+    $("#ultima-presion").html(data.pressure + " hPa");
+    $("#ultima-viento").html(data.windspeed + " km/h");
   });
 
   promedio();

@@ -4,13 +4,12 @@ import subprocess
 
 class Process(object):
   process = None
-
-  def start_process(self):
+  def start_process(self, id_sample):
     if self.process == None:
-      cmd = "python3 process.py"
+      cmd = "python3 process.py %s" % (id_sample)
       self.process = subprocess.Popen(cmd.split(), preexec_fn=os.setsid)
-      return self.process.pid
-    return None
+      return 200
+    return 500
 
   def is_running(self):
     return self.process != None

@@ -40,96 +40,24 @@
   </nav>
 
   <div class="container-fluid">
-    <div class="row">
-
-      <div class="col-md">
-        <div class="jumbotron custom">
-          <div class="text-center">
-            <h3>Temperatura</h3>
-            <p class="lead">Promedio: </p>
-            <p id="promedio-temperatura"> {{ temperatura }}°C </p>
-            <p class="lead">Ultima muestra: </p>
-            <p id="ultima-temperatura"> {{ temperatura }}°C </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md">
-        <div class="jumbotron custom">
-          <div class="text-center">
-            <h3>Humedad</h3>
-            <p class="lead">Promedio: </p>
-            <p id="promedio-humedad"> {{ humedad }}%</p>
-            <p class="lead">Ultima muestra: </p>
-            <p id="ultima-humedad"> {{ humedad }}%</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md">
-        <div class="jumbotron custom">
-          <div class="text-center">
-            <h3>Presión</h3>
-            <p class="lead">Promedio: </p>
-            <p id="promedio-presion"> {{ presion }} hPa </p>
-            <p class="lead">Ultima muestra: </p>
-            <p id="ultima-presion"> {{ presion }} hPa </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md">
-        <div class="jumbotron custom">
-          <div class="text-center">
-            <h3>Viento</h3>
-            <p class="lead">Promedio: </p>
-            <p id="promedio-viento"> {{ viento }} km/h </p>
-            <p class="lead">Ultima muestra: </p>
-            <p id="ultima-viento"> {{ viento }} km/h </p>
-          </div>
-        </div>
-      </div>
-
-    </div> <!-- row end -->
-
-    <form method="POST" action="/index">
-      <div class="row">
-        <div class="col-md-5">
-          <div class="jumbotron custom">
-            <div class="text-center">
-              <p class="lead">Período de muestreo: </p>
-              <div class="input-group mb-3">
-                <select class="custom-select" name="periodo" id="periodo-select">
-                  <option value=1 selected>1 segundo</option>
-                  <option value=2 >2 segundos</option>
-                  <option value=5 >5 segundos</option>
-                  <option value=10 >10 segundos</option>
-                  <option value=30 >30 segundos</option>
-                  <option value=60 >60 segundos</option>
-                </select>
+    <form method="POST" action="/samples">
+      <div class="row start">
+          <div class="col-md-5">
+            <div class="jumbotron custom">
+              <div class="text-center">
+                <button type="submit" class="btn btn-success">Comenzar</button>
               </div>
             </div>
           </div>
-        </div>
-      </div> <!-- row end -->
+        </div> <!-- row end -->
     </form>
-
-  </div> <!-- container end -->
+  </div>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-
-  <script type="text/javascript">
-    var temperatura = "{{ temperatura }}";
-    var humedad = "{{ humedad }}";
-    var presion = "{{ presion }}";
-    var viento = "{{ viento }}";
-    var periodo = "{{ periodo }}";
-  </script>
 
 </body>
 
