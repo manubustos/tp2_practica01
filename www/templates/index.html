@@ -47,9 +47,9 @@
           <div class="text-center">
             <h3>Temperatura</h3>
             <p class="lead">Promedio: </p>
-            <p id="promedio-temperatura"> {{ temperatura }} °C</p>
+            <p id="promedio-temperatura"> {{ temperatura }}°C </p>
             <p class="lead">Ultima muestra: </p>
-            <p id="ultima-temperatura"> {{ temperatura }} °C</p>
+            <p id="ultima-temperatura"> {{ temperatura }}°C </p>
           </div>
         </div>
       </div>
@@ -59,9 +59,9 @@
           <div class="text-center">
             <h3>Humedad</h3>
             <p class="lead">Promedio: </p>
-            <p id="promedio-humedad"> {{ humedad }} % </p>
+            <p id="promedio-humedad"> {{ humedad }}%</p>
             <p class="lead">Ultima muestra: </p>
-            <p id="ultima-humedad"> {{ humedad }} % </p>
+            <p id="ultima-humedad"> {{ humedad }}%</p>
           </div>
         </div>
       </div>
@@ -99,7 +99,7 @@
             <div class="text-center">
               <p class="lead">Período de muestreo: </p>
               <div class="input-group mb-3">
-                <select class="custom-select" name="time" id="time-select">
+                <select class="custom-select" name="periodo" id="periodo-select">
                   <option value=1 selected>1 segundo</option>
                   <option value=2 >2 segundos</option>
                   <option value=5 >5 segundos</option>
@@ -122,12 +122,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
   <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/timer.js') }}"></script>
+
   <script type="text/javascript">
     var temperatura = "{{ temperatura }}";
     var humedad = "{{ humedad }}";
     var presion = "{{ presion }}";
     var viento = "{{ viento }}";
+    var periodo = "{{ periodo }}";
   </script>
 
 </body>

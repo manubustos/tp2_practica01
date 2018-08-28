@@ -42,6 +42,26 @@ class Database(object):
                       pressure=samples["presion"], windspeed=samples["viento"])
     session.add(sample)
     session.commit()
-    sample_id = int(sample.id)
     session.close()
     return samples
+
+  def get_last_sample(self):
+    session = self.get_session()
+    query = session.query(Samples).order_by(Samples.id.desc()).first()
+    session.close()
+    sample = [query.temperature, query.humidity, query.pressure, query.windspeed]
+    return sample
+
+  def add_sample(self, sample):
+    session = self.get_session()
+    samples = {}
+    samples["temperatura"] = sample.temperature + random.randint(-1,1)
+    samples["humedad"] = sample.humidity + random.randint(-1,1)
+    samples["presion"] = sample.pressure + random.randint(-1,1)
+    samples["viento"] = sample.windspeed + random.randint(-1,1)
+    newSample = Samples(temperature=samples["temperatura"], humidity=samples["humedad"],
+                      pressure=samples["presion"], windspeed=samples["viento"])
+    session.add(newSample)
+    session.commit()
+    session.close()
+    return newSample

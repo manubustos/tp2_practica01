@@ -7,7 +7,7 @@ class Process(object):
 
   def start_process(self):
     if self.process == None:
-      cmd = "python process.py"
+      cmd = "python3 process.py"
       self.process = subprocess.Popen(cmd.split(), preexec_fn=os.setsid)
       return self.process.pid
     return None
