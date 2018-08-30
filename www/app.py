@@ -15,10 +15,6 @@ pro = Process()
 
 @app.route('/')
 def index():
-  return render_template('index.html')
-
-@app.route('/samples', methods = ["POST"])
-def init_samples():
   # If there is a process running, return to index()
   #if pro.is_running():
   #  return index()
@@ -32,13 +28,20 @@ def init_samples():
   #periodo_muestreo = data["periodo"]
   pro.start_process(id_sample)
   #return render_template('index.html', temperatura=samples["temperatura"], humedad=samples["humedad"], presion=samples["presion"], viento=samples["viento"], periodo=periodo_muestreo)
-  #return render_template('samples.html', temperatura=samples["temperatura"], humedad=samples["humedad"], presion=samples["presion"], viento=samples["viento"])
-  return render_template('samples.html', id_sample=id_sample)
+  #return render_template('index.html', temperatura=samples["temperatura"], humedad=samples["humedad"], presion=samples["presion"], viento=samples["viento"])
+  return render_template('index.html', id_sample=id_sample)
 
+@app.route('/last', methods = ["GET"])
+def get_last():
+  sample = db.get_last_sample()
+  #samples = [sample.temperature, sample.humidity, sample.pressure, sample.windspeed]
+  samples = [1,2,3,4]
+  return jsonify(samples)
 
-@app.route('/samples/<id_sample>', methods = ["GET"])
-def get_sample(id_sample):
-  sample = db.get_sample(id_sample)
+@app.route('/average', methods = ["GET"])
+def get_average():
+  sample = db.get_average()
+  #sample = [1,2,3,4]
   return jsonify(sample)
 
 if __name__ == "__main__":

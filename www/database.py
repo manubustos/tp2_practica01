@@ -1,5 +1,6 @@
 from models import Samples
 
+from sqlalchemy import func
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
@@ -47,6 +48,17 @@ class Database(object):
     session.close()
     return sample
 
+  def get_average(self):
+    session = self.get_session()
+    #sample = [session.query(func.avg(Samples.temperature).label('average')).limit(10).scalar(),
+    #          session.query(func.avg(Samples.humidity).label('average')).limit(10).scalar(),
+    #          session.query(func.avg(Samples.pressure).label('average')).limit(10).scalar(),
+    #          session.query(func.avg(Samples.windspeed).label('average')).limit(10).scalar()]
+    temperatura = session.query(Samples).first().scalar()
+    sample = [temperatura,2,3,4]
+    session.close()
+    return sample
+
   def add_sample(self, sample):
     session = self.get_session()
     samples = {}
@@ -60,3 +72,9 @@ class Database(object):
     session.commit()
     session.close()
     return newSample
+
+  def get_last_sample(self):
+    session = self.get_session()
+    sample = session.query(Samples).order_by(Samples.id.desc()).first()
+    session.close()
+    return sample
