@@ -17,11 +17,10 @@ class Samples(Base):
 
   def serialize(self):
     """Return object data in easily serializeable format"""
-    return
-    {
+    return {
       'id'  : self.id,
       'temperature': self.temperature,
       'humidity': self.humidity,
       'pressure': self.pressure,
-      'windspeed': self.windspeed,
+      'windspeed': self.windspeed
     }

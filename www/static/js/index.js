@@ -1,18 +1,25 @@
 $(document).ready(function(){
 
-  //setInterval(muestrear, 1000);
   muestrear();
+  setInterval(muestrear, 1000);
 
 });
 
 function muestrear(){
-  /*$.get("/last", function(data) {
+  ulitmo();
+  promedio();
+}
+
+function ulitmo(){
+  $.get("/last", function(data) {
     $("#ultima-temperatura").html(data[0] + "°C");
     $("#ultima-humedad").html(data[1] + "%");
     $("#ultima-presion").html(data[2] + " hPa");
     $("#ultima-viento").html(data[3] + " km/h");
-  });*/
+  });
+}
 
+function promedio() {
   $.get("/average", function(data) {
     $("#promedio-temperatura").html(data[0] + "°C");
     $("#promedio-humedad").html(data[1] + "%");

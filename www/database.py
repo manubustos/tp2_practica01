@@ -7,6 +7,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 import os
 import random
+import decimal
 
 class Database(object):
   session = None
@@ -50,14 +51,14 @@ class Database(object):
 
   def get_average(self):
     session = self.get_session()
-    #sample = [session.query(func.avg(Samples.temperature).label('average')).limit(10).scalar(),
-    #          session.query(func.avg(Samples.humidity).label('average')).limit(10).scalar(),
-    #          session.query(func.avg(Samples.pressure).label('average')).limit(10).scalar(),
-    #          session.query(func.avg(Samples.windspeed).label('average')).limit(10).scalar()]
-    temperatura = session.query(Samples).first().scalar()
-    sample = [temperatura,2,3,4]
+    lastSamples = session.query(Samples).order_by(Samples.id.desc()).limit(10)
+    temperatura = round(float(session.query(func.avg(Samples.temperature).label('average')).first()[0]),2)
+    #humedad = round(float(session.query(func.avg(Samples.humidity).label('average')).first()[0]),2)
+    #presion = round(float(session.query(func.avg(Samples.pressure).label('average')).first()[0]),2)
+    #viento = round(float(session.query(func.avg(Samples.windspeed).label('average')).first()[0]),2)
+    #sample = [temperatura, humedad, presion, viento]
     session.close()
-    return sample
+    return temperatura
 
   def add_sample(self, sample):
     session = self.get_session()
@@ -78,3 +79,9 @@ class Database(object):
     sample = session.query(Samples).order_by(Samples.id.desc()).first()
     session.close()
     return sample
+
+  def last_ten_samples(self):
+    session = self.get_session()
+    samples = session.query(Samples).order_by(Samples.id.desc()).limit(10)
+    session.close()
+    return samples
