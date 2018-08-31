@@ -92,14 +92,14 @@
 
     </div> <!-- row end -->
 
-    <form method="POST" action="/samples">
+    <form method="POST">
       <div class="row">
         <div class="col-md-5">
           <div class="jumbotron custom">
             <div class="text-center">
               <p class="lead">Período de muestreo: </p>
               <div class="input-group mb-3">
-                <select class="custom-select" name="periodo" id="periodo-select" onchange="myFunction()">
+                <select class="custom-select" name="periodo" id="periodo-select">
                   <option value=1000 selected>1 segundo</option>
                   <option value=2000 >2 segundos</option>
                   <option value=5000 >5 segundos</option>
@@ -126,11 +126,7 @@
   <!--script src="../static/js/index.js"></script-->
 
   <script type="text/javascript">
-    var time = 1000;
-
-    function myFunction(){
-      time = document.getElementById("periodo-select").value;
-    }
+    time = document.getElementById("periodo-select").value;
   </script>
 
 </body>

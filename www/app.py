@@ -15,9 +15,6 @@ pro = Process()
 
 @app.route('/')
 def index():
-  # If there is a process running, return to index()
-  if pro.is_running():
-    return index()
   d_s = {}
   d_s["temperatura"] = random.randint(10,30)
   d_s["humedad"] = random.randint(0,100)
@@ -27,13 +24,13 @@ def index():
   pro.start_process(id_sample)
   return render_template('index.html', id_sample=id_sample)
 
-@app.route('/last', methods = ["GET"])
-def get_last():
-  sample = db.get_last_sample()
-  samples = [sample.temperature, sample.humidity, sample.pressure, sample.windspeed]
-  return jsonify(samples)
+#@app.route('/last', methods = ["GET"])
+#def get_last():
+#  sample = db.get_last_sample()
+#  samples = [sample.temperature, sample.humidity, sample.pressure, sample.windspeed]
+#  return jsonify(samples)
 
-@app.route('/average', methods = ["GET"])
+@app.route('/samples', methods = ["GET"])
 def get_average():
   samples = db.last_ten_samples();
   
@@ -53,9 +50,14 @@ def get_average():
   promedioPres = pres / 10;
   promedioVien = vien / 10;
 
-  promedio = [promedioTemp, promedioHum, promedioPres, promedioVien];
+  promedio = [samples[0].temperature, samples[0].humidity, samples[0].pressure, samples[0].windspeed, promedioTemp, promedioHum, promedioPres, promedioVien];
 
   return jsonify(promedio)
+
+@app.route('/exit', methods = ["GET"])
+def exit():
+  data = pro.stop_process();
+  return jsonify({"status": data})
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0', port=8888)
